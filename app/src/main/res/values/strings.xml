@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Link Cleaner</string>
+    <string name="share_label">Clean link</string>
+    <string name="label_original">Original</string>
+    <string name="label_cleaned">Clean link</string>
+    <string name="copy">Copy</string>
+    <string name="share">Share</string>
+    <string name="open">Open</string>
+    <string name="clean">Clean</string>
+    <string name="paste_hint">Paste a link</string>
+    <string name="copied">Clean link copied</string>
+    <string name="clip_label">Clean link</string>
+    <string name="already_clean">No tracking found — link is already clean.</string>
+    <string name="no_link_found">No link found in shared text</string>
+    <string name="no_browser">No app can open this link</string>
+</resources>
