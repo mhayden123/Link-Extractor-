@@ -70,8 +70,8 @@ class ShareActivity : Activity() {
             .show()
     }
 
-    private fun showPreview(text: String) {
-        val result = UrlCleaner.clean(text)
+    private fun showPreview(sharedText: String) {
+        val result = UrlCleaner.clean(sharedText)
         if (result == null) {
             Toast.makeText(this, R.string.no_link_found, Toast.LENGTH_SHORT).show()
             finish()
