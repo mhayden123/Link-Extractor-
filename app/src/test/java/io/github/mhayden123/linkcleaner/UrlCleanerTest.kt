@@ -115,6 +115,22 @@ class UrlCleanerTest {
         clean("https://www.walmart.com/ip/Some-Product-Name/123456789?athbdg=L1600&from=/search"),
     )
 
+    // Real link shared from a World Market Facebook/Instagram ad.
+    @Test fun worldMarketAdLink() = assertEquals(
+        "https://www.worldmarket.com/p/monster-energy-m3-super-concentrate-656799.html",
+        clean(
+            "https://www.worldmarket.com/p/monster-energy-m3-super-concentrate-656799.html" +
+                "?media_type=image&ppc=true&camp=sp:facebook_instagram:|OG_PDSOC_MULTI_META_SALE_ASC_LOW_PURCH_NTEST_VO" +
+                "|OG_META_CRM_ActiveCustomers_NATL_ALL_18-65plus_NTEST_VO-Dynamic" +
+                "|OG_META_DYN_STND_PROD_NA_BRAND_EVG_XCAT_RefreshV1_06082026-12312026|52560464665609",
+        ),
+    )
+
+    @Test fun campIsNotStrippedOnOtherSites() = assertEquals(
+        "https://example.com/summer?camp=7",
+        clean("https://example.com/summer?camp=7"),
+    )
+
     @Test fun alreadyCleanLinkIsUnchanged() {
         val r = UrlCleaner.clean("https://example.com/clean/path")!!
         assertEquals("https://example.com/clean/path", r.cleaned)

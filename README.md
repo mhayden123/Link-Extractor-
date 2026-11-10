@@ -19,6 +19,7 @@ The app requests **no permissions** (not even internet). All cleaning happens on
   - eBay → `ebay.com/itm/ID`
   - AliExpress → `aliexpress.com/item/ID.html`
   - Walmart → `walmart.com/ip/ID`
+  - World Market: Facebook/Instagram ad tags (`media_type`, `ppc`, `camp`) are removed
 
 Parameters that actually matter, such as a YouTube video ID or timestamp, are kept. The rules live in
 [`UrlCleaner.kt`](app/src/main/java/io/github/mhayden123/linkcleaner/UrlCleaner.kt).

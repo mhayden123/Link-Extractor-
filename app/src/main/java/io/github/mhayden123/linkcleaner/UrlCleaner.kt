@@ -70,6 +70,8 @@ object UrlCleaner {
             "starsleft", "_encoding", "pd_rd_w", "pd_rd_wg", "pd_rd_r", "pd_rd_i",
             "pf_rd_p", "pf_rd_r", "pf_rd_s", "pf_rd_t", "pf_rd_i", "pf_rd_m",
         ),
+        // Paid Facebook/Instagram ad tags (ad format, pay-per-click flag, campaign name).
+        "worldmarket.com" to setOf("media_type", "ppc", "camp"),
         "ebay" to setOf("_trkparms", "_trksid", "hash", "amdata", "mkevt", "mkcid", "mkrid", "campid", "toolid", "customid"),
         "aliexpress" to setOf("spm", "scm", "pvid", "algo_pvid", "algo_exp_id", "aff_platform", "aff_trace_key", "sk", "aff_fcid", "terminal_id", "afsmartredirect", "gatewayadapt"),
     )
