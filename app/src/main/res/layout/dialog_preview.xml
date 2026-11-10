@@ -45,6 +45,15 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textIsSelectable="true" />
 
+        <Switch
+            android:id="@+id/strip_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:minHeight="48dp"
+            android:text="@string/strip_all"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
         <TextView
             android:id="@+id/changes"
             android:layout_width="match_parent"

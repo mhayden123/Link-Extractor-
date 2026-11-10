@@ -135,6 +135,17 @@ object UrlCleaner {
         return Result(original, url.toString(), changes)
     }
 
+    /**
+     * Removes everything after "?" (query) and "#" (fragment). Used by the
+     * "Remove everything after ?" switch for sites without a specific rule.
+     * Returns null when there is nothing to remove.
+     */
+    fun stripAll(url: String): String? {
+        val parsed = ParsedUrl.parse(url) ?: return null
+        if (parsed.params.isEmpty() && parsed.fragment == null) return null
+        return parsed.copy(params = emptyList(), fragment = null).toString()
+    }
+
     private fun isTracking(host: String, name: String): Boolean {
         if (name in GLOBAL_PARAMS) return true
         if (GLOBAL_PREFIXES.any { name.startsWith(it) }) return true

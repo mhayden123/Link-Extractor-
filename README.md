@@ -21,6 +21,8 @@ The app requests **no permissions** (not even internet). All cleaning happens on
   - Walmart → `walmart.com/ip/ID`
   - World Market: Facebook/Instagram ad tags (`media_type`, `ppc`, `camp`) are removed
 
+For any other site, flip the **Remove everything after ?** switch in the dialog to strip the whole query string.
+
 Parameters that actually matter, such as a YouTube video ID or timestamp, are kept. The rules live in
 [`UrlCleaner.kt`](app/src/main/java/io/github/mhayden123/linkcleaner/UrlCleaner.kt).
 

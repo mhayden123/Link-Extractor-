@@ -142,5 +142,13 @@ class UrlCleanerTest {
         assertEquals(listOf("Removed: utm_source, fbclid"), r.changes)
     }
 
+    @Test fun stripAllRemovesQueryAndFragment() = assertEquals(
+        "https://shop.example.com/p/item-123.html",
+        UrlCleaner.stripAll("https://shop.example.com/p/item-123.html?color=red&src=ad#reviews"),
+    )
+
+    @Test fun stripAllReturnsNullWhenNothingToRemove() =
+        assertNull(UrlCleaner.stripAll("https://shop.example.com/p/item-123.html"))
+
     @Test fun noUrlReturnsNull() = assertNull(UrlCleaner.clean("just some text, no link here"))
 }

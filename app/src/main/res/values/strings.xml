@@ -8,6 +8,7 @@
     <string name="share">Share</string>
     <string name="open">Open</string>
     <string name="clean">Clean</string>
+    <string name="strip_all">Remove everything after ?</string>
     <string name="paste_hint">Paste a link</string>
     <string name="copied">Clean link copied</string>
     <string name="clip_label">Clean link</string>

@@ -14,6 +14,7 @@ import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
+import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 
@@ -80,7 +81,22 @@ class ShareActivity : Activity() {
 
         val view = LayoutInflater.from(this).inflate(R.layout.dialog_preview, null)
         view.findViewById<TextView>(R.id.original).text = result.original
-        view.findViewById<TextView>(R.id.cleaned).text = result.cleaned
+        val cleanedView = view.findViewById<TextView>(R.id.cleaned)
+        cleanedView.text = result.cleaned
+
+        // The link that Copy / Share / Open act on. Changes when the switch is flipped.
+        var currentLink = result.cleaned
+        val stripped = UrlCleaner.stripAll(result.cleaned)
+        view.findViewById<Switch>(R.id.strip_all).apply {
+            if (stripped == null) {
+                visibility = View.GONE
+            } else {
+                setOnCheckedChangeListener { _, checked ->
+                    currentLink = if (checked) stripped else result.cleaned
+                    cleanedView.text = currentLink
+                }
+            }
+        }
         view.findViewById<TextView>(R.id.changes).apply {
             if (result.changes.isEmpty()) {
                 setText(R.string.already_clean)
@@ -103,20 +119,20 @@ class ShareActivity : Activity() {
         dialog.show()
 
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-            copy(result.cleaned)
+            copy(currentLink)
             dialog.dismiss()
         }
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener {
             val send = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
-                putExtra(Intent.EXTRA_TEXT, result.cleaned)
+                putExtra(Intent.EXTRA_TEXT, currentLink)
             }
             startActivity(Intent.createChooser(send, getString(R.string.share)))
             dialog.dismiss()
         }
         dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener {
             try {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(result.cleaned)))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(currentLink)))
                 dialog.dismiss()
             } catch (e: ActivityNotFoundException) {
                 Toast.makeText(this, R.string.no_browser, Toast.LENGTH_SHORT).show()
